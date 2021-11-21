@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "graphql-yoga": "^1.18.3"
-  },
   "devDependencies": {
     "nodemon": "^2.0.15"
   }

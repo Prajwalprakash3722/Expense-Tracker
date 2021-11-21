@@ -39,4 +39,19 @@
 - Tailwind CSS
 - Bootstrap
 
+### File Structure
+
+```bash
+├── FrontEnd
+├── Graph-Backend
+└── Rest-Backend
+```
+
+### Done Features (Backend + Frontend)
+
+- [x] Create an account
+- [x] Log in
+- [x] Log out
+- [x] View Profile (User)
+
 #### LICENSE: GNU General Public License v3.0

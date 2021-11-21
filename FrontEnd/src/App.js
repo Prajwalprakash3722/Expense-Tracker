@@ -1,13 +1,25 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import AboutPage from "./Pages/About";
+import LoginPage from "./Pages/Login";
+import RegisterPage from "./Pages/Register";
+import ProfilePage from "./Pages/Profile";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 function App() {
   return (
-    <div className="flex flex-row items-center justify-center min-h-screen bg-gray-400">
-      <span role="img" aria-label="emoji">
-        🦄
-      </span>
-      <h1 className="text-4xl ml-2 font-semibold text-blue-100">
-        Expense Tracker
-      </h1>
-    </div>
+    <>
+      <Router>
+        <NavBar />
+        <Routes>
+          {/* <Route path="/" exact component={HomePage} /> */}
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
 }
 

@@ -7,8 +7,10 @@
 - [x] Create an account
 - [x] Log in
 - [x] Log out
+- [x] View Profile (User)
 - [x] Create an Transaction
-- [] View all Transaction
+- [x] View all Transaction
+- [x] View all Transaction by id
 - [] View all Transaction by category
 - [] View all Transaction by date
 - [] View all Transaction by day

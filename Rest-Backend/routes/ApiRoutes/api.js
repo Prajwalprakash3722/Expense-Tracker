@@ -35,7 +35,23 @@ router.get("/users", auth, (req, res, next) => {
   }
 });
 
+// GET all transactions for a particular user (userId)
+
 router.get("/transactions", auth, (req, res, next) => {
+  const _id = req.user["id"];
+  const transactions = Transaction.find({ user: _id }, (err, transactions) => {
+    console.log(transactions);
+    if (transactions.length > 0) {
+      res.status(200).json(transactions);
+    } else {
+      res.status(401).json({ message: "No Transactions Found" });
+    }
+  });
+});
+
+// POST a new transaction for a particular user (userId)
+
+router.post("/transactions", auth, (req, res, next) => {
   const _id = req.user["id"];
   const user = User.findOne({ _id: _id }, (err, user) => {
     if (user) {
@@ -62,8 +78,23 @@ router.get("/transactions", auth, (req, res, next) => {
   });
 });
 
-// router.get("/transaction/:id", auth, (req, res, next) => {
+// GET a particular transaction for a particular user (userId)
 
-// });
+router.get("/transaction/:id", auth, (req, res, next) => {
+  const _id = req.user["id"];
+  const transaction = Transaction.findOne(
+    { _id: req.params.id },
+    (err, transaction) => {
+      const user_id = transaction.user.toString();
+      if (user_id === _id) {
+        res.status(200).json(transaction);
+      } else if (user_id !== _id) {
+        res.status(401).json({ message: "Auth Failed" });
+      } else {
+        res.status(401).json({ message: "No Transaction Found" });
+      }
+    }
+  );
+});
 
 module.exports = router;
