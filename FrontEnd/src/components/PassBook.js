@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import generatePDF from "./GenPdf";
-const PassBook = ({ props }) => {
+import generatePDF from "./PdfGen/GenPdf";
+import WholePdfGen from "./PdfGen/WholePdfGen";
+const PassBook = () => {
   const [token, setToken] = useState("");
   const [data, setData] = useState([]);
 
@@ -31,13 +32,13 @@ const PassBook = ({ props }) => {
   const IncomeTotal = Income.reduce((acc, item) => {
     return acc + item.amount;
   }, 0);
+  const Balance = IncomeTotal - ExpenseTotal;
   return (
     <div className="flex flex-col items-center justify-center">
       <p className="text-lg font-bold text-gray-500 md:text-xl leading-normal md:leading-relaxed mb-2">
-        Expense:
-        <span className="text-red-400">{ExpenseTotal}</span>
+        Expense: <span className="text-red-400">{ExpenseTotal}</span>
         <br />
-        Total Income <span className="text-green-400">{IncomeTotal}</span>
+        Total Income: <span className="text-green-400">{IncomeTotal}</span>
         <br />
         {IncomeTotal - ExpenseTotal < 0 ? (
           <span className="text-red-400">You are Deep in Credit</span>
@@ -141,18 +142,26 @@ const PassBook = ({ props }) => {
           </div>
         </div>
       }
-      <button
-        className="bg-blue-400 p-4 rounded-2xl text-white text-lg m-3"
-        onClick={() => generatePDF(Expense)}
-      >
-        Generate Expense report
-      </button>
-      <button
-        className="bg-blue-400 p-4 rounded-2xl text-white text-lg m-3"
-        onClick={() => generatePDF(Income)}
-      >
-        Generate Income report
-      </button>
+      <div className="flex flex-row">
+        <button
+          className="bg-blue-400 p-2 rounded-xl text-white text-lg m-2"
+          onClick={() => generatePDF(Income, Balance)}
+        >
+          Generate Income report
+        </button>
+        <button
+          className="bg-blue-400 p-2 rounded-2xl text-white text-lg m-2"
+          onClick={() => generatePDF(Expense, Balance)}
+        >
+          Generate Expense report
+        </button>
+        <button
+          className="bg-blue-400 p-2 rounded-2xl text-white text-lg m-2"
+          onClick={() => WholePdfGen(data, Balance)}
+        >
+          Generate Report
+        </button>
+      </div>
     </div>
   );
 };

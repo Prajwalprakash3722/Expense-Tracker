@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function Card() {
   const [token, setToken] = useState("");
   const [props, setProps] = useState([]);
@@ -16,6 +17,9 @@ function Card() {
         .then((res) => {
           setProps(res.data);
         });
+      props.sort((a, b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
     }
   }, [token]);
   return (
@@ -34,9 +38,11 @@ function Card() {
                     </p>
                   </div>
                   <div className="mt-3 md:mt-0 md:ml-2">
-                    <div className="inline-block rounded-md text-lg font-semibold py-2 px-4 text-white bg-red-500">
-                      View Details
-                    </div>
+                    <Link to={`transaction/${item._id}`}>
+                      <div className="inline-block rounded-md text-lg font-semibold py-2 px-4 text-white bg-red-500">
+                        View Details
+                      </div>
+                    </Link>
                     <div className="m-2 p-2 text-center rounded-md text-lg font-semibold text-white bg-gray-600">
                       {item.category}
                     </div>
@@ -56,9 +62,11 @@ function Card() {
                     </p>
                   </div>
                   <div className="mt-3 md:mt-0 md:ml-2">
-                    <div className="inline-block rounded-md text-lg font-semibold py-2 px-4 text-white bg-green-500">
-                      View Details
-                    </div>
+                    <Link to={`transaction/${item._id}`}>
+                      <div className="inline-block rounded-md text-lg font-semibold py-2 px-4 text-white bg-green-500">
+                        View Details
+                      </div>
+                    </Link>
                     <div className="m-2 p-2 text-center rounded-md text-lg font-semibold text-white bg-gray-600">
                       {item.category}
                     </div>
