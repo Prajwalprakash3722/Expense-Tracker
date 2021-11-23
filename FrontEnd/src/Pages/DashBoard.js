@@ -2,6 +2,7 @@ import Timeline from "../components/TimeLine/Timeline";
 import Card from "../components/Card";
 import Chart from "../components/Chart";
 import PassBook from "../components/PassBook";
+import Form from "../components/Form";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 function DashBoard() {
@@ -24,6 +25,7 @@ function DashBoard() {
   }, [token]);
   return (
     <>
+      <Form />
       {data.length > 0 && (
         <>
           <div className="block lg:grid grid-flow-col grid-cols-3">
