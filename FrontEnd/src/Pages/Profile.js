@@ -7,7 +7,7 @@ function Profile() {
   const [user, setUser] = useState({});
   const [props, setProps] = useState([]);
   const [password, changePassword] = useState(false);
-  const [cancel, setCancel] = useState(false);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     if (token) {
@@ -22,6 +22,7 @@ function Profile() {
           setProps(res.data[0].transactions);
         });
     }
+    setTotal(localStorage.getItem("total"));
   }, [token]);
 
   const date1 = new Date(user.date);
@@ -62,9 +63,9 @@ function Profile() {
               </p>
             </div>
             <div class="text-center">
-              <h3 class="font-bold text-secondary">5665</h3>
+              <h3 class="font-bold text-secondary">{total}</h3>
               <p class="w-20 lg:text-xs text-text tracking-widest">
-                Total Amount Spent
+                Total Amount Recoded
               </p>
             </div>
           </div>

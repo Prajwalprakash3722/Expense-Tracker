@@ -40,7 +40,6 @@ router.get("/users", auth, (req, res, next) => {
 router.get("/transactions", auth, (req, res, next) => {
   const _id = req.user["id"];
   const transactions = Transaction.find({ user: _id }, (err, transactions) => {
-    console.log(transactions);
     if (transactions.length > 0) {
       res.status(200).json(transactions);
     } else {
@@ -87,7 +86,10 @@ router.get("/transaction/:id", auth, (req, res, next) => {
     (err, transaction) => {
       const user_id = transaction.user.toString();
       if (user_id === _id) {
-        res.status(200).json(transaction);
+        res.status(200).json({
+          ...transaction,
+          date: new Date(transaction.date).toLocaleDateString(),
+        });
       } else if (user_id !== _id) {
         res.status(401).json({ message: "Auth Failed" });
       } else {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import RotateLeftIcon from '@mui/icons-material/RotateLeft'
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ function Login() {
           localStorage.setItem("token", data.token);
           setSuccess(true);
           setTimeout(() => {
-            window.location.assign("/");
+            window.location.assign("/dashboard");
           }, 1500);
         } else {
           setError(true);

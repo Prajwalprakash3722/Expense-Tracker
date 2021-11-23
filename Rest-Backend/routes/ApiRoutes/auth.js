@@ -15,7 +15,7 @@ const comparepassword = (password, hash) => {
 };
 
 router.get("/", (req, res) => {
-  res.json({ message: "Working Perfectly Lol!!" });
+  res.json({ message: "Auth Working Perfectly Lol!!" });
 });
 
 router.post("/register", async (req, res) => {
