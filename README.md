@@ -37,7 +37,6 @@
 
 - React
 - Tailwind CSS
-- Bootstrap
 
 ### File Structure
 
@@ -53,5 +52,8 @@
 - [x] Log in
 - [x] Log out
 - [x] View Profile (User)
+- [x] Create an Transaction
+- [x] View all Transaction
+- [x] Export Transactions to PDF 
 
 #### LICENSE: GNU General Public License v3.0
